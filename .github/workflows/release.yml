@@ -67,7 +67,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           use-cross: true
-          command: Build
+          command: build
           args: --release --target=${{ matrix.target }}
 
       - name: Check release Directory for Linux
