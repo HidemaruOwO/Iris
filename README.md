@@ -64,7 +64,7 @@ cd Iris
 
 ## Repository Tools 🔧
 
-- [ ] Depandabotのセットアップ
+- [x] Depandabotのセットアップ
 - [ ] CodeQLのセットアップ
 
 <details>

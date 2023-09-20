@@ -1,0 +1,20 @@
+[package]
+name = "Iris"
+version = "0.1.0"
+edition = "2021"
+default-run = "Iris"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "Iris"
+path = "src/main.rs"
+
+[[bin]]
+name = "version"
+path = "scripts/version.rs"
+
+[[bin]]
+name = "name"
+path = "scripts/name.rs"
+
+[dependencies]
