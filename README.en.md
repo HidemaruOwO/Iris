@@ -1,16 +1,26 @@
 <div align="center">
 
-# Awesome Repository 🎨
+# Iris 💫
 
-<!-- s;HidemaruOwO/Awesome-Repository;User/Repository;g -->
+<!-- s;HidemaruOwO/Iris;User/Repository;g -->
 
-[![Test CLI](https://github.com/HidemaruOwO/Awesome-Repository/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Awesome-Repository/actions/workflows/test.yml)![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Awesome-Repository?style=flat-square)![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Awesome-Repository?style=flat-square)![問題](https://img.shields.io/github/issues/HidemaruOwO/Awesome-Repository?style=flat-square)![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Awesome-Repository?style=flat-square)![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Awesome-Repository/bug?style=flat-square)
+<!-- [![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml) -->
 
-![image](https://github.com/HidemaruOwO/Awesome-Repository/assets/82384920/bf4ccddf-3eae-4fae-97f4-d2b59bec919f)
+<!-- ![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square) -->
+
+![image](https://user-images.githubusercontent.com/82384920/269208322-7155e5c7-fc40-40fb-9b1f-1f11d5d78ddd.png)
 
 ## What is this?
 
-More awesome repository templates.
+General-purpose Discord Bot written in Rust
 
 </div>
 
@@ -47,10 +57,8 @@ Please run this script.
 ## Build 🔨
 
 ```bash
-git clone https://github.com/HidemaruOwO/Awesome-Repository.git
-cd Awesome-Repository.git
-mkdir build && cd build
-go build ../build.sh
+git clone https://github.com/HidemaruOwO/Iris.git
+cd Iris
 ```
 
 ## Dependencies 🪡
@@ -71,13 +79,13 @@ To use this app, please register the following command in your path.
     -   `.github/dependabot.yml`of`package-ecosystem`Set the value to (e.g. npm,yarn,pip)
 -   CodeQL setup
     -   <https://dev.classmethod.jp/articles/github-code-scanning/>
-    -   [対応言語](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
+    -   [supported language](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
 
 </details>
 
 ## For Contributor 🤝
 
-If you would like to contribute to this project,[Contribution guide](docs/README.md)Please read.
+本プロジェクトにコントリービュートする場合は[コントリービュートガイド](docs/README.md)Please read.
 
 ## Reference ✨
 
