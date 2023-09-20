@@ -11,8 +11,10 @@ jobs:
     name: test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Sources
         uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
 
       - name: Test
         id: test_step

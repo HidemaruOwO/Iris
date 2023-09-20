@@ -31,10 +31,10 @@ jobs:
           echo "feiled ${{ steps.test_result.outputs.failedCheckNames }}"
           echo "status ${{ steps.test_result.outputs.failedCheckStates }}"
           exit 1
-
-      - name: Checkout
+      - name: Checkout Sources
         uses: actions/checkout@v3
         with:
+          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
           fetch-depth: 0
       - name: Extract branch name
         # actionlint ignore=SC2086
