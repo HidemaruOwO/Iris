@@ -96,7 +96,7 @@ jobs:
           echo "PKG_VERSION=$(target/${{ matrix.target }}/release/version)" >> $GITHUB_ENV
 
       - name: Compress binary
-        uses: a7ul/tar-action@v1
+        uses: a7ul/tar-action@v1.1.2
         id: compress
         with:
           command: c
