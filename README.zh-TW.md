@@ -69,7 +69,7 @@ cd Iris
 
 ## 儲存庫工具🔧
 
--   [ ] Dependabot 設定
+-   [x] Dependabot 設定
 -   [ ] CodeQL 設定
 
 <details>
@@ -85,8 +85,8 @@ cd Iris
 
 ## 對於貢獻者🤝
 
-如果您想為這個專案做出貢獻，[コントリービュートガイド](docs/README.md)請閱讀。
+如果您想為這個專案做出貢獻，[投稿指南](docs/README.md)請閱讀。
 
-## 參考✨
+## Reference ✨
 
 -   [doremire/Awesome-自述文件](https://github.com/doremire/Awesome-README)
