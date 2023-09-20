@@ -69,7 +69,7 @@ cd Iris
 
 ## 存储库工具🔧
 
--   [ ] Dependabot 设置
+-   [x] Dependabot 设置
 -   [ ] CodeQL 设置
 
 <details>
