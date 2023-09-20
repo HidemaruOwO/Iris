@@ -97,11 +97,11 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.zip
+          name: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}
           path: target/${{ matrix.target }}/release/${{ env.PKG_NAME }}.exe
       - name: Artifact on Other
         if: "!(steps.aw.conclusion == 'success')"
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.zip
+          name: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}
           path: target/${{ matrix.target }}/release/${{ env.PKG_NAME }}
