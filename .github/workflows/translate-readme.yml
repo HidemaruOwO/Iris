@@ -7,11 +7,19 @@ on:
     paths:
       - ".github/workflows/translate-readme.yml"
       - "README.md"
+
+permissions:
+  contents: write
+  repository-projects: write
+
 jobs:
   translate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Sources
+        uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:

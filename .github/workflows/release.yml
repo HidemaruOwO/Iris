@@ -4,16 +4,22 @@ on:
     types:
       - published
 
+permissions:
+  contents: write
+  repository-projects: write
+  actions: write
+  statuses: read
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
 
-    # Multi platfrom support
+    # Multi platform support
     # strategy:
-      # matrix:
-        # platform: [macos-latest, ubuntu-latest, windows-latest]
-      # fail-fast: false
+    # matrix:
+    # platform: [macos-latest, ubuntu-latest, windows-latest]
+    # fail-fast: false
 
     # runs-on: ${{ matrix.platform }}
 
@@ -33,6 +39,8 @@ jobs:
           exit 1
       - name: Checkout Sources
         uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
       - name: Setup
         run: echo "Set up your programming language here."
         # これらをuseしてセットアップをしてください
