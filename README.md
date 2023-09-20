@@ -42,15 +42,15 @@ GitHubの[Release](https://github.com/HidemaruOwO/Iris/releases)もしくは、A
 - tar.gz
 
 ```bash
-tar xvf Iris_*.tar.gz
-chmod 755 Iris
+tar xvf iris_*.tar.gz
+chmod 755 iris
 ```
 
 - zip
 
 ```bash
-unzip Iris_*.zip
-chmod 755 Iris
+unzip iris_*.zip
+chmod 755 iris
 ```
 
 次にこのスクリプトを`start.sh`という名前で作成してください
@@ -63,7 +63,7 @@ BOT_TOKEN=xxx
 BOT_OWNER_ID=830789490481954856
 BOT_PREFIX="&&"
 # ----- STOP BOT ENV ------ #
-./Iris
+./iris
 ```
 
 そうしたら実行権限を付与します

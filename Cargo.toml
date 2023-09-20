@@ -1,12 +1,12 @@
 [package]
-name = "Iris"
+name = "iris"
 version = "0.1.0"
 edition = "2021"
-default-run = "Iris"
+default-run = "iris"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [[bin]]
-name = "Iris"
+name = "iris"
 path = "src/main.rs"
 
 [[bin]]
@@ -18,3 +18,4 @@ name = "name"
 path = "scripts/name.rs"
 
 [dependencies]
+serenity = { git = "https://github.com/vars1ty/serenity", branch = "current" }
