@@ -1,21 +1,21 @@
 <div align="center">
 
-# Awesome Repository 🎨
+# Iris 💫
 
-<!-- s;HidemaruOwO/Awesome-Repository;User/Repository;g -->
+<!-- s;HidemaruOwO/Iris;User/Repository;g -->
 
-[![Test CLI](https://github.com/HidemaruOwO/Awesome-Repository/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Awesome-Repository/actions/workflows/test.yml)
-![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Awesome-Repository?style=flat-square)
-![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Awesome-Repository?style=flat-square)
-![問題](https://img.shields.io/github/issues/HidemaruOwO/Awesome-Repository?style=flat-square)
-![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Awesome-Repository?style=flat-square)
-![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Awesome-Repository/bug?style=flat-square)
+<!-- [![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml) -->
+<!-- ![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square) -->
+<!-- ![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square) -->
+<!-- ![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square) -->
+<!-- ![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square) -->
+<!-- ![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square) -->
 
-![image](https://github.com/HidemaruOwO/Awesome-Repository/assets/82384920/bf4ccddf-3eae-4fae-97f4-d2b59bec919f)
+![image](https://user-images.githubusercontent.com/82384920/269208322-7155e5c7-fc40-40fb-9b1f-1f11d5d78ddd.png)
 
 ## なんだこれは？
 
-より素晴らしいリポジトリのテンプレートです。
+Rustで書かれた汎用Discord Bot
 
 </div>
 
@@ -52,10 +52,8 @@
 ## Build 🔨
 
 ```bash
-git clone https://github.com/HidemaruOwO/Awesome-Repository.git
-cd Awesome-Repository.git
-mkdir build && cd build
-go build ../build.sh
+git clone https://github.com/HidemaruOwO/Iris.git
+cd Iris
 ```
 
 ## Dependencies 🪡
