@@ -1,16 +1,26 @@
 <div align="center">
 
-# 멋진 저장소 🎨
+# 아이리스 🎃
 
-<!-- s;HidemaruOwO/Awesome-Repository;User/Repository;g -->
+<!-- s;HidemaruOwO/Iris;User/Repository;g -->
 
-[![Test CLI](https://github.com/HidemaruOwO/Awesome-Repository/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Awesome-Repository/actions/workflows/test.yml)![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Awesome-Repository?style=flat-square)![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Awesome-Repository?style=flat-square)![問題](https://img.shields.io/github/issues/HidemaruOwO/Awesome-Repository?style=flat-square)![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Awesome-Repository?style=flat-square)![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Awesome-Repository/bug?style=flat-square)
+<!-- [![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml) -->
 
-![image](https://github.com/HidemaruOwO/Awesome-Repository/assets/82384920/bf4ccddf-3eae-4fae-97f4-d2b59bec919f)
+<!-- ![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square) -->
+
+<!-- ![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square) -->
+
+![image](https://user-images.githubusercontent.com/82384920/269208322-7155e5c7-fc40-40fb-9b1f-1f11d5d78ddd.png)
 
 ## 이게 뭐야?
 
-더 멋진 저장소 템플릿입니다.
+Rust로 작성된 범용 Discord Bot
 
 </div>
 
@@ -47,10 +57,8 @@
 ## 빌드🔨
 
 ```bash
-git clone https://github.com/HidemaruOwO/Awesome-Repository.git
-cd Awesome-Repository.git
-mkdir build && cd build
-go build ../build.sh
+git clone https://github.com/HidemaruOwO/Iris.git
+cd Iris
 ```
 
 ## 종속성 🪡
@@ -71,13 +79,13 @@ go build ../build.sh
     -   `.github/dependabot.yml`의`package-ecosystem`에 값 설정(예: npm,yarn,pip)
 -   CodeQL 설정
     -   <https://dev.classmethod.jp/articles/github-code-scanning/>
-    -   [대응 언어](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
+    -   [対応言語](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
 
 </details>
 
 ## 기여자용 🤝
 
-이 프로젝트에 컨트리뷰트하는 경우는[컨트리뷰트 가이드](docs/README.md)를 읽으십시오.
+이 프로젝트에 컨트리뷰트하는 경우는[컨트리뷰트 가이드](docs/README.md)をお読みください。
 
 ## 참고 ✨
 
