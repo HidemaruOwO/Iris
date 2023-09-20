@@ -82,3 +82,27 @@ jobs:
         if: matrix.target == 'x86_64-apple-darwin'
         run: |
           ls target/${{ matrix.target }}/release/
+
+      - name: Set Env on Windows
+        id: sn
+        if: ${{ matrix.platform == 'windows-latest' }}
+        run: |
+          echo "PKG_NAME=$(target/${{ matrix.target }}/release/name)" >> $env:GITHUB_ENV
+          echo "PKG_VERSION=$(target/${{ matrix.target }}/release/version)" >> $env:GITHUB_ENV
+      - name: Set Env on Other
+        if: "!(steps.sn.conclusion == 'success')"
+        run: |
+          echo "PKG_NAME=$(target/${{ matrix.target }}/release/name)" >> $GITHUB_ENV
+          echo "PKG_VERSION=$(target/${{ matrix.target }}/release/version)" >> $GITHUB_ENV
+
+      - name: Compress binary
+        uses: a7ul/tar-action@v1
+        id: compress
+        with:
+          command: c
+          cwd: target/${{ matrix.target }}/release/
+          files: |
+            ./Iris
+          outPath: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.tar.gz
+
+      - run: ls
