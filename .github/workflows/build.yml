@@ -1,4 +1,4 @@
-name: "Build"
+name: "Artifact"
 on:
   push:
 
@@ -9,22 +9,32 @@ permissions:
   statuses: read
 
 jobs:
-  release:
-    name: Release
+  build:
+    name: Artifact
     # runs-on: ubuntu-latest
 
     # Multi platform support
     strategy:
       matrix:
-        platform: [macos-latest, ubuntu-latest, windows-latest]
+        target:
+          - x86_64-unknown-linux-musl
+          - x86_64-pc-windows-msvc
+          - x86_64-apple-darwin
+        include:
+          - target: x86_64-unknown-linux-musl
+            os: ubuntu-latest
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+          - target: x86_64-apple-darwin
+            os: macos-latest
       fail-fast: false
 
-    runs-on: ${{ matrix.platform }}
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Wait Tests
         id: test_result
-        uses: Sibz/await-status-action@v1
+        uses: Sibz/await-status-action@v1.0.1
         with:
           contexts: test-status
           authToken: ${{ secrets.GITHUB_TOKEN }}
@@ -39,17 +49,59 @@ jobs:
         uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
-      - name: Setup
-        run: echo "Set up your programming language here."
-        # これらをuseしてセットアップをしてください
-        # uses: actions/setup-go@v2
-        #
+      - name: Install musl tools
+        if: matrix.target == 'x86_64-unknown-linux-musl'
+        run: |
+          sudo apt install -qq -y musl-tools --no-install-recommends
+      - name: Setup Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          target: ${{ matrix.target }}
+          override: true
       - name: Build
-        run: echo "Build from src here." >> artifact_file
-        # ./build.sh
+        uses: actions-rs/cargo@v1
+        with:
+          use-cross: false
+          command: build
+          args: --release --target=${{ matrix.target }}
 
-      - name: Artifact
+      - name: Check release Directory for Linux
+        if: matrix.target == 'x86_64-unknown-linux-musl'
+        run: |
+          ls target/${{ matrix.target }}/release/
+      - name: Check release Directory for windows
+        if: matrix.target == 'x86_64-pc-windows-msvc'
+        run: |
+          dir target/${{ matrix.target }}/release/
+      - name: Check release Directory for macOS
+        if: matrix.target == 'x86_64-apple-darwin'
+        run: |
+          ls target/${{ matrix.target }}/release/
+
+      - name: Set Env on Windows
+        id: sew
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          echo "PKG_NAME=$(target/${{ matrix.target }}/release/name)" >> $env:GITHUB_ENV
+          echo "PKG_VERSION=$(target/${{ matrix.target }}/release/version)" >> $env:GITHUB_ENV
+      - name: Set Env on Other
+        if: "!(steps.sew.conclusion == 'success')"
+        run: |
+          echo "PKG_NAME=$(target/${{ matrix.target }}/release/name)" >> $GITHUB_ENV
+          echo "PKG_VERSION=$(target/${{ matrix.target }}/release/version)" >> $GITHUB_ENV
+
+      - name: Artifact on Windows
+        id: aw
+        if: ${{ matrix.os == 'windows-latest' }}
         uses: actions/upload-artifact@v3
         with:
-          name: Artifact-${{ runner.os }}
-          path: artifact_file
+          name: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.zip
+          path: target/${{ matrix.target }}/release/${{ env.PKG_NAME }}.exe
+      - name: Artifact on Other
+        if: "!(steps.aw.conclusion == 'success')"
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.zip
+          path: target/${{ matrix.target }}/release/${{ env.PKG_NAME }}
