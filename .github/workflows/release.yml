@@ -84,20 +84,30 @@ jobs:
           ls target/${{ matrix.target }}/release/
 
       - name: Set Env on Windows
-        id: sn
+        id: sew
         if: ${{ matrix.platform == 'windows-latest' }}
         run: |
           echo "PKG_NAME=$(target/${{ matrix.target }}/release/name)" >> $env:GITHUB_ENV
           echo "PKG_VERSION=$(target/${{ matrix.target }}/release/version)" >> $env:GITHUB_ENV
       - name: Set Env on Other
-        if: "!(steps.sn.conclusion == 'success')"
+        if: "!(steps.sew.conclusion == 'success')"
         run: |
           echo "PKG_NAME=$(target/${{ matrix.target }}/release/name)" >> $GITHUB_ENV
           echo "PKG_VERSION=$(target/${{ matrix.target }}/release/version)" >> $GITHUB_ENV
 
-      - name: Compress binary
+      - name: Compress binary on Windows
+        id: cbw
+        if: ${{ matrix.platform == 'windows-latest' }}
         uses: a7ul/tar-action@v1.1.2
-        id: compress
+        with:
+          command: c
+          cwd: target/${{ matrix.target }}/release/
+          files: |
+            ./Iris.exe
+          outPath: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.tar.gz
+      - name: Compress binary on Windows
+        if: "!(steps.cbw.conclusion == 'success')"
+        uses: a7ul/tar-action@v1.1.2
         with:
           command: c
           cwd: target/${{ matrix.target }}/release/
