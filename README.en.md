@@ -69,7 +69,7 @@ To use this app, please register the following command in your path.
 
 ## Repository Tools 🔧
 
--   [ ] Dependabot setup
+-   [x] Dependabot setup
 -   [ ] CodeQL setup
 
 <details>
@@ -85,7 +85,7 @@ To use this app, please register the following command in your path.
 
 ## For Contributor 🤝
 
-本プロジェクトにコントリービュートする場合は[コントリービュートガイド](docs/README.md)Please read.
+If you would like to contribute to this project,[Contribution guide](docs/README.md)Please read.
 
 ## Reference ✨
 
