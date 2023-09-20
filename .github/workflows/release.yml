@@ -3,7 +3,6 @@ on:
   release:
     types:
       - published
-  push:
 
 permissions:
   contents: write
@@ -115,4 +114,8 @@ jobs:
             ./Iris
           outPath: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.tar.gz
 
-      - run: ls
+      - name: Upload release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: ${{ env.PKG_NAME }}_${{ env.PKG_VERSION }}_${{ matrix.target }}.tar.gz
