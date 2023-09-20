@@ -69,7 +69,7 @@ cd Iris
 
 ## 저장소 도구 🔧
 
--   [ ] Dependabot 설정
+-   [x] Dependabot 설정
 -   [ ] CodeQL 설정
 
 <details>
@@ -79,13 +79,13 @@ cd Iris
     -   `.github/dependabot.yml`의`package-ecosystem`에 값 설정(예: npm,yarn,pip)
 -   CodeQL 설정
     -   <https://dev.classmethod.jp/articles/github-code-scanning/>
-    -   [対応言語](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
+    -   [대응 언어](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
 
 </details>
 
 ## 기여자용 🤝
 
-이 프로젝트에 컨트리뷰트하는 경우는[컨트리뷰트 가이드](docs/README.md)をお読みください。
+이 프로젝트에 컨트리뷰트하는 경우는[컨트리뷰트 가이드](docs/README.md)를 읽으십시오.
 
 ## 참고 ✨
 
