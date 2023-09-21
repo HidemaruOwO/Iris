@@ -18,4 +18,9 @@ name = "name"
 path = "scripts/name.rs"
 
 [dependencies]
+env_logger = "0.10.0"
+log = "0.4.20"
 serenity = { git = "https://github.com/vars1ty/serenity", branch = "current" }
+# logger_rs = { path = "/home/hidemaru/Code/logger-rs" }
+logger_rs = { git = "https://github.com/HidemaruOwO/logger-rs", branch = "main" }
+tokio = { version = "1.32.0", features = ["rt-multi-thread"]}
