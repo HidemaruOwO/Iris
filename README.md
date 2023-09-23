@@ -59,8 +59,8 @@ chmod 755 iris
 ```bash
 #!/bin/bash
 # ----- START BOT ENV ----- #
-export BOT_TOKEN=xxx
 export BOT_OWNER_ID=830789490481954856
+export BOT_TOKEN="xxx"
 export BOT_PREFIX="&&"
 # ----- STOP BOT ENV ------ #
 ./iris
@@ -85,6 +85,7 @@ git clone https://github.com/HidemaruOwO/Iris.git
 cd Iris
 cargo build --release
 # And run script
+mv start.example.sh start.sh
 ./start.sh
 ```
 
@@ -93,6 +94,7 @@ cargo build --release
 ```bash
 git clone https://github.com/HidemaruOwO/Iris.git
 cd Iris
+mv test.example.sh test.sh
 ./test.sh
 ```
 
