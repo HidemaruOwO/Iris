@@ -47,6 +47,7 @@ impl EventHandler for Handler {
             match cmd {
                 "puyo" => commands::puyo::main(&context, &message, &args).await,
                 "hello" => commands::hello::main(&context, &message, &args).await,
+                "ping" => commands::ping::main(&context, &message, &args).await,
                 _ => info!("Command not found: {}", cmd),
             }
         }
