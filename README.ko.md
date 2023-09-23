@@ -32,7 +32,7 @@ Rust로 작성된 범용 Discord Bot
 
 ## 설치 😊
 
-GitHub의[풀어 주다](https://github.com/HidemaruOwO/Iris/releases)또는 Actions[Artifact](https://github.com/HidemaruOwO/Iris/actions/workflows/build.yml)에서 실행 파일을 다운로드합니다.
+GitHub의[풀어 주다](https://github.com/HidemaruOwO/Iris/releases)또는 Actions[인공물](https://github.com/HidemaruOwO/Iris/actions/workflows/build.yml)에서 실행 파일을 다운로드합니다.
 
 -   tar.gz
 
@@ -54,14 +54,14 @@ chmod 755 iris
 ```bash
 #!/bin/bash
 # ----- START BOT ENV ----- #
-export BOT_TOKEN=xxx
 export BOT_OWNER_ID=830789490481954856
+export BOT_TOKEN="xxx"
 export BOT_PREFIX="&&"
 # ----- STOP BOT ENV ------ #
 ./iris
 ```
 
-そうしたら実行権限を付与します
+그러면 실행 권한을 부여합니다.
 
 ```bash
 chmod 755 start.sh
@@ -80,6 +80,7 @@ git clone https://github.com/HidemaruOwO/Iris.git
 cd Iris
 cargo build --release
 # And run script
+mv start.example.sh start.sh
 ./start.sh
 ```
 
@@ -88,10 +89,11 @@ cargo build --release
 ```bash
 git clone https://github.com/HidemaruOwO/Iris.git
 cd Iris
+mv test.example.sh test.sh
 ./test.sh
 ```
 
-## Dependencies 🪡
+## 종속성 🪡
 
 이 앱을 사용하려면 다음 명령을 경로에 등록하십시오.
 
