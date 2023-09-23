@@ -4,17 +4,7 @@
 
 <!-- s;HidemaruOwO/Iris;User/Repository;g -->
 
-<!-- [![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml) -->
-
-<!-- ![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square) -->
+[![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml)![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square)![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square)![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square)![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square)![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square)
 
 ![image](https://user-images.githubusercontent.com/82384920/269208322-7155e5c7-fc40-40fb-9b1f-1f11d5d78ddd.png)
 
@@ -40,18 +30,47 @@ Rust로 작성된 범용 Discord Bot
 
 ## 사용법 💨
 
-이 스크립트를 실행하십시오.
-
-```bash
-./run.sh
-```
-
 ## 설치 😊
 
-이 스크립트를 실행하십시오.
+GitHub의[풀어 주다](https://github.com/HidemaruOwO/Iris/releases)또는 Actions[Artifact](https://github.com/HidemaruOwO/Iris/actions/workflows/build.yml)에서 실행 파일을 다운로드합니다.
+
+-   tar.gz
 
 ```bash
-./install.sh
+tar xvf iris_*.tar.gz
+chmod 755 iris
+```
+
+-   지퍼
+
+```bash
+unzip iris_*.zip
+chmod 755 iris
+```
+
+그런 다음이 스크립트를`start.sh`라는 이름으로 만드십시오.
+또한 변수의 내용을 각각 편집하십시오.
+
+```bash
+#!/bin/bash
+# ----- START BOT ENV ----- #
+export BOT_TOKEN=xxx
+export BOT_OWNER_ID=830789490481954856
+export BOT_PREFIX="&&"
+# ----- STOP BOT ENV ------ #
+./iris
+```
+
+そうしたら実行権限を付与します
+
+```bash
+chmod 755 start.sh
+```
+
+그리고 실행
+
+```bash
+./start.sh
 ```
 
 ## 빌드🔨
@@ -59,13 +78,30 @@ Rust로 작성된 범용 Discord Bot
 ```bash
 git clone https://github.com/HidemaruOwO/Iris.git
 cd Iris
+cargo build --release
+# And run script
+./start.sh
 ```
 
-## 종속성 🪡
+## 개발 💡
+
+```bash
+git clone https://github.com/HidemaruOwO/Iris.git
+cd Iris
+./test.sh
+```
+
+## Dependencies 🪡
 
 이 앱을 사용하려면 다음 명령을 경로에 등록하십시오.
 
--   `git`
+### 종속성
+
+없음
+
+### 의존성 구축
+
+-   `rust`
 
 ## 저장소 도구 🔧
 
