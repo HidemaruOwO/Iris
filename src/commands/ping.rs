@@ -1,7 +1,7 @@
-use std::collections::HashMap;
 use std::env::consts;
 use std::process::Command;
 use std::time::Instant;
+use std::{collections::HashMap, time::Duration};
 
 use chrono::{NaiveDateTime, Utc};
 use logger_rs::{error, info};
@@ -98,20 +98,23 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
     let mut sys = System::new_all();
     let mut brand_map: HashMap<String, Vec<CpuInfo>> = HashMap::new();
 
-    sys.refresh_all();
+    let sampling_count = 2;
 
-    for cpu in sys.cpus() {
-        let brand = cpu.brand().to_string();
-        brand_map
-            .entry(brand.clone())
-            .or_insert_with(Vec::new)
-            .push(CpuInfo {
-                brand: brand.clone(),
-                usage: cpu.cpu_usage(),
-                frequency: cpu.frequency(),
-            });
+    for _ in 0..sampling_count {
+        sys.refresh_cpu();
+        for cpu in sys.cpus() {
+            let brand = cpu.brand().to_string();
+            brand_map
+                .entry(brand.clone())
+                .or_insert_with(Vec::new)
+                .push(CpuInfo {
+                    brand: brand.clone(),
+                    usage: cpu.cpu_usage(),
+                    frequency: cpu.frequency(),
+                });
+        }
+        std::thread::sleep(Duration::from_millis(500));
     }
-
     let cpu_list: Vec<CpuList> = brand_map
         .iter()
         .map(|(brand, cpus)| {
@@ -123,7 +126,7 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
                 brand: brand.clone(),
                 usage: avg_usage / len,
                 frequency: avg_frequency / len as u64,
-                cores: len as u32,
+                cores: len as u32 / sampling_count,
             }
         })
         .collect();
@@ -135,7 +138,7 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         .enumerate()
         .map(|(index, cpu)| {
             format!(
-                "⚙️ **CPU {}**```js\nBRAND: {}\nLOGIC CORE: {}\nUSAGE: {}%\nFREQUENCY: {:.2}GHz\n```",
+                "⚙️ **CPU {}**```js\nBRAND: {}\nLOGIC CORE: {}\nUSAGE: {:.1}%\nFREQUENCY: {:.2}GHz\n```",
                 index + 1,
                 cpu.brand,
                 cpu.cores,
