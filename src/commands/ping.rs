@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::env::consts;
 use std::process::Command;
 use std::time::Instant;
@@ -6,6 +7,7 @@ use chrono::{NaiveDateTime, Utc};
 use logger_rs::{error, info};
 use serenity::model::prelude::*;
 use serenity::prelude::*;
+use sysinfo::{CpuExt, System, SystemExt};
 
 pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
     let timestamp = Utc::now();
@@ -25,8 +27,8 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
     benchmark_msg.delete(context).await.unwrap();
 
     // Get OS
-    let os = consts::OS;
-    let arch = consts::ARCH;
+    let os = &consts::OS;
+    let arch = &consts::ARCH;
     let host_name = match hostname::get() {
         Ok(host) => host.to_string_lossy().to_string(),
         Err(_) => "unknown host".to_string(),
@@ -77,12 +79,87 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
             error!("Failed to get os release");
         }
     }
+    // Get CPU
+    #[derive(Debug)]
+    struct CpuInfo {
+        brand: String,
+        usage: f32,
+        frequency: u64,
+    }
+
+    #[derive(Debug)]
+    struct CpuList {
+        brand: String,
+        usage: f32,
+        frequency: u64,
+        cores: u32,
+    }
+
+    let mut sys = System::new_all();
+    let mut brand_map: HashMap<String, Vec<CpuInfo>> = HashMap::new();
+
+    sys.refresh_all();
+
+    for cpu in sys.cpus() {
+        let brand = cpu.brand().to_string();
+        brand_map
+            .entry(brand.clone())
+            .or_insert_with(Vec::new)
+            .push(CpuInfo {
+                brand: brand.clone(),
+                usage: cpu.cpu_usage(),
+                frequency: cpu.frequency(),
+            });
+    }
+
+    let cpu_list: Vec<CpuList> = brand_map
+        .iter()
+        .map(|(brand, cpus)| {
+            let (avg_usage, avg_frequency) = cpus.iter().fold((0.0, 0), |acc, cpu| {
+                (acc.0 + cpu.usage, acc.1 + cpu.frequency)
+            });
+            let len = cpus.len() as f32;
+            CpuList {
+                brand: brand.clone(),
+                usage: avg_usage / len,
+                frequency: avg_frequency / len as u64,
+                cores: len as u32,
+            }
+        })
+        .collect();
+
+    info!("CPU List: {:?}", cpu_list);
+
+    let cpu_info: String = cpu_list
+        .iter()
+        .enumerate()
+        .map(|(index, cpu)| {
+            format!(
+                "⚙️ **CPU {}**```js\nBRAND: {}\nLOGIC CORE: {}\nUSAGE: {}%\nFREQUENCY: {:.2}GHz\n```",
+                index + 1,
+                cpu.brand,
+                cpu.cores,
+                cpu.usage,
+                cpu.frequency as f64 / 1000.0
+            )
+        })
+        .collect::<Vec<String>>()
+        .join("");
+
     let msg = message
         .channel_id
         .send_message(context, |m| {
             m.content(format!(
-                "🚀 **API Latency**\n```js\nREAD: {}ms\nWRITE: {}ms\n```\n🖥 **System Info**\n```js\nOS: {} {}\nARCH: {}\nHOST: {}\n```",
-                ping, write_ping, os, release, arch, host_name
+                "{}\n{}\n{}",
+                format!(
+                    "🚀 **API Latency**\n```js\nREAD: {}ms\nWRITE: {}ms\n```",
+                    &ping, &write_ping
+                ),
+                format!(
+                    "🖥 **System Info**\n```js\nOS: {} {}\nARCH: {}\nHOST: {}\n```",
+                    os, &release, arch, &host_name
+                ),
+                cpu_info
             ))
         })
         .await
