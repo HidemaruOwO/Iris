@@ -4,17 +4,7 @@
 
 <!-- s;HidemaruOwO/Iris;User/Repository;g -->
 
-<!-- [![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml) -->
-
-<!-- ![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square) -->
-
-<!-- ![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square) -->
+[![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml)![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square)![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square)![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square)![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square)![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square)
 
 ![image](https://user-images.githubusercontent.com/82384920/269208322-7155e5c7-fc40-40fb-9b1f-1f11d5d78ddd.png)
 
@@ -40,18 +30,47 @@ General-purpose Discord Bot written in Rust
 
 ## Usage 💨
 
-Please run this script.
-
-```bash
-./run.sh
-```
-
 ## Install 😊
 
-Please run this script.
+GitHub[Release](https://github.com/HidemaruOwO/Iris/releases)Or Actions[Artifact](https://github.com/HidemaruOwO/Iris/actions/workflows/build.yml)Please download the executable file from.
+
+-   tar.gz
 
 ```bash
-./install.sh
+tar xvf iris_*.tar.gz
+chmod 755 iris
+```
+
+-   zip
+
+```bash
+unzip iris_*.zip
+chmod 755 iris
+```
+
+次にこのスクリプトを`start.sh`という名前で作成してください
+また、変数の中身を各々編集してください
+
+```bash
+#!/bin/bash
+# ----- START BOT ENV ----- #
+export BOT_TOKEN=xxx
+export BOT_OWNER_ID=830789490481954856
+export BOT_PREFIX="&&"
+# ----- STOP BOT ENV ------ #
+./iris
+```
+
+Then give execute permission
+
+```bash
+chmod 755 start.sh
+```
+
+and run
+
+```bash
+./start.sh
 ```
 
 ## Build 🔨
@@ -59,13 +78,30 @@ Please run this script.
 ```bash
 git clone https://github.com/HidemaruOwO/Iris.git
 cd Iris
+cargo build --release
+# And run script
+./start.sh
+```
+
+## Development 💡
+
+```bash
+git clone https://github.com/HidemaruOwO/Iris.git
+cd Iris
+./test.sh
 ```
 
 ## Dependencies 🪡
 
 To use this app, please register the following command in your path.
 
--   `git`
+### Dependencies
+
+none
+
+### Build Dependencies
+
+-   `rust`
 
 ## Repository Tools 🔧
 
