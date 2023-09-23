@@ -52,7 +52,7 @@ jobs:
       - name: Install musl tools
         if: matrix.target == 'x86_64-unknown-linux-musl'
         run: |
-          sudo apt install -qq -y musl-tools --no-install-recommends
+          sudo apt install -qq -y musl-tools build-essential --no-install-recommends
       - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
