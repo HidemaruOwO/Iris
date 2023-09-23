@@ -67,19 +67,6 @@ jobs:
           command: build
           args: --release --target=${{ matrix.target }}
 
-      - name: Check release Directory for Linux
-        if: matrix.target == 'x86_64-unknown-linux-musl'
-        run: |
-          ls target/${{ matrix.target }}/release/
-      - name: Check release Directory for windows
-        if: matrix.target == 'x86_64-pc-windows-msvc'
-        run: |
-          dir target/${{ matrix.target }}/release/
-      - name: Check release Directory for macOS
-        if: matrix.target == 'x86_64-apple-darwin'
-        run: |
-          ls target/${{ matrix.target }}/release/
-
       - name: Set Env on Windows
         id: sew
         if: ${{ matrix.os == 'windows-latest' }}
