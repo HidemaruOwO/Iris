@@ -26,7 +26,7 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         .channel_id
         .send_message(context, |m| {
             m.content(format!(
-                "🚀 **API Letency**\n```js\nREAD: {}ms\nWRITE: {}ms\n```",
+                "🚀 **API Latency**\n```js\nREAD: {}ms\nWRITE: {}ms\n```",
                 ping, write_ping
             ))
         })
