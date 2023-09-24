@@ -9,6 +9,34 @@ use serenity::model::prelude::*;
 use serenity::prelude::*;
 use sysinfo::{CpuExt, System, SystemExt};
 
+fn cpu_usage_level(usage: f32) -> &'static str {
+    if usage < 20.0 {
+        "`🟢` COOL"
+    } else if usage < 30.0 {
+        "`🟡` LITTLE"
+    } else if usage < 50.0 {
+        "`🟠` STRESS"
+    } else if usage < 70.0 {
+        "`🔴` CRAZY"
+    } else {
+        "`🟣` OVERLOAD"
+    }
+}
+
+fn ram_usage_level(usage: u64, total: u64) -> &'static str {
+    if usage < total / 5 {
+        "`🟢` COOL"
+    } else if usage < total * 3 / 10 {
+        "`🟡` LITTLE"
+    } else if usage < total / 2 {
+        "`🟠` STRESS"
+    } else if usage < total * 7 / 10 {
+        "`🔴` CRAZY"
+    } else {
+        "`🟣` OVERLOAD"
+    }
+}
+
 pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
     let timestamp = Utc::now();
     let message_timestamp = message.timestamp.to_string();
@@ -138,8 +166,9 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         .enumerate()
         .map(|(index, cpu)| {
             format!(
-                "⚙️ **CPU {}**```js\nBRAND: {}\nLOGIC CORE: {}\nUSAGE: {:.1}%\nFREQUENCY: {:.2}GHz\n```",
+                "⚙️ **CPU {} - {}**```js\nBRAND: {}\nLOGIC: {}core\nUSAGE: {:.1}%\nFREQUENCY: {:.2}GHz\n```",
                 index + 1,
+                cpu_usage_level(cpu.usage),
                 cpu.brand,
                 cpu.cores,
                 cpu.usage,
@@ -149,20 +178,41 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         .collect::<Vec<String>>()
         .join("");
 
+    let total_ram = sys.total_memory();
+    let used_ram = sys.used_memory();
+    let ram_level = ram_usage_level(used_ram, total_ram);
+    let total_swap = sys.total_swap();
+    let used_swap = sys.used_swap();
+
+    let system_info = format!(
+        "🖥 **System Info**\n```js\nOS: {} {}\nARCH: {}\nHOST: {}\n```",
+        os, &release, arch, &host_name
+    );
+    let os_info = format!(
+        "🚀 **API Latency**\n```js\nREAD: {}ms\nWRITE: {}ms\n```",
+        &ping, &write_ping
+    );
+    let ram_info = format!(
+        "⚡ **RAM - {}**\n```js\nMEM: {:.2}GiB / {:.2}GiB ({:.0}%)\nSWP: {:.2}GiB / {:.2}GiB ({:.0}%)\n```",
+        ram_level,
+        used_ram as f64 / 1024.0 / 1024.0 / 1024.0,
+        total_ram as f64 / 1024.0 / 1024.0 / 1024.0,
+        used_ram as f64 / total_ram as f64 * 100.0,
+        used_swap as f64 / 1024.0 / 1024.0 / 1024.0,
+        total_swap as f64 / 1024.0 / 1024.0 / 1024.0,
+        used_swap as f64 / total_swap as f64 * 100.0
+    );
+    let lang_info = format!(
+        "📚 **Language Info**\n```js\nRUST: {}\n```",
+        env!("CARGO_PKG_VERSION")
+    );
+
     let msg = message
         .channel_id
         .send_message(context, |m| {
             m.content(format!(
-                "{}\n{}\n{}",
-                format!(
-                    "🚀 **API Latency**\n```js\nREAD: {}ms\nWRITE: {}ms\n```",
-                    &ping, &write_ping
-                ),
-                format!(
-                    "🖥 **System Info**\n```js\nOS: {} {}\nARCH: {}\nHOST: {}\n```",
-                    os, &release, arch, &host_name
-                ),
-                cpu_info
+                "{}\n{}\n{}\n{}",
+                system_info, os_info, cpu_info, ram_info
             ))
         })
         .await
