@@ -1,0 +1,1 @@
+pub fn rustc_version() -> &'static str { return "rustc 1.71.1 (eb26296b5 2023-08-03)"; } pub fn cargo_version() -> &'static str { return "cargo 1.71.1 (7f1d04c00 2023-07-29)"; }
