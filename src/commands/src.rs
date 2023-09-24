@@ -22,7 +22,7 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         branch = String::from_utf8(out.stdout).unwrap().trim().to_string();
     }
 
-    if _args[0].is_empty() {
+    if _args.is_empty() {
         message
             .reply(
                 context,
