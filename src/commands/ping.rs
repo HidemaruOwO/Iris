@@ -210,20 +210,19 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         cargo_version()
     );
 
-    let msg = message
-        .channel_id
-        .send_message(context, |m| {
-            m.content(format!(
+    message
+        .reply(
+            context,
+            format!(
                 "{}\n{}\n{}\n{}\n{}",
                 system_info, os_info, cpu_info, ram_info, lang_info
-            ))
-        })
+            ),
+        )
         .await
-        .expect("Failed to send message");
-
-    msg.react(context, ReactionType::Unicode("✅".to_string()))
+        .unwrap()
+        .react(context, ReactionType::Unicode("✅".to_string()))
         .await
         .expect("Failed to react");
 
-    info!("✅ Successful");
+    info!("✅ Success");
 }
