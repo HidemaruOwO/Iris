@@ -225,5 +225,5 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         .await
         .expect("Failed to react");
 
-    info!("✅ Successful");
+    info!("✅ Success");
 }
