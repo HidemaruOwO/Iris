@@ -1,3 +1,5 @@
+use crate::libs::version::{cargo_version, rustc_version};
+
 use std::env::consts;
 use std::process::Command;
 use std::time::Instant;
@@ -203,16 +205,17 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         used_swap as f64 / total_swap as f64 * 100.0
     );
     let lang_info = format!(
-        "📚 **Language Info**\n```js\nRUST: {}\n```",
-        env!("CARGO_PKG_VERSION")
+        "📚 **Rust**\n```js\nrustc: {}\ncargo: {}\n```",
+        rustc_version(),
+        cargo_version()
     );
 
     let msg = message
         .channel_id
         .send_message(context, |m| {
             m.content(format!(
-                "{}\n{}\n{}\n{}",
-                system_info, os_info, cpu_info, ram_info
+                "{}\n{}\n{}\n{}\n{}",
+                system_info, os_info, cpu_info, ram_info, lang_info
             ))
         })
         .await
