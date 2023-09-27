@@ -1,5 +1,4 @@
-use log::info;
-use logger_rs::error;
+use logger_rs::{debug, error};
 use reqwest::header;
 use serde::{Deserialize, Serialize};
 
@@ -99,13 +98,12 @@ pub async fn guild(token: String, id: String) -> Option<GuildData> {
         .send()
         .await
         .unwrap();
-    info!("response ok");
     if !response.status().is_success() {
         error!("Error: {}", response.status());
         return None;
     }
 
     let guild: GuildData = response.json().await.unwrap();
-    info!("JSON parsed");
+    debug!("JSON parsed");
     return Some(guild);
 }
