@@ -58,8 +58,10 @@ impl EventHandler for Handler {
 // -----------------------------------
 #[tokio::main]
 async fn main() {
-    let filters: [(Option<&str>, LevelFilter); 2] =
-        [(None, LevelFilter::Warn), (Some("iris"), LevelFilter::Info)];
+    let filters: [(Option<&str>, LevelFilter); 2] = [
+        (None, LevelFilter::Warn),
+        (Some("iris"), LevelFilter::Debug),
+    ];
     init_logger(&filters);
     info!("🚀 Starting...\n");
     let cfg = &config::get_config();
