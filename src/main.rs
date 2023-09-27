@@ -15,7 +15,7 @@ struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, _: Context, ready: Ready) {
-        info!("🌸 Bot runnning!!");
+        info!("🌸 {} is connected!", ready.user.name);
     }
     async fn message(&self, context: Context, message: Message) {
         let cfg = &config::get_config();
