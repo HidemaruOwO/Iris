@@ -30,5 +30,5 @@ serde_json = "1.0.107"
 chrono = "0.4.31"
 hostname = "0.3.1"
 sys-info = "0.9.1"
-sysinfo = "0.29.10"
+sysinfo = { git = "https://github.com/GuillaumeGomez/sysinfo", branch = "master" }
 openssl = { version = "0.10.35", features = ["vendored"] }
