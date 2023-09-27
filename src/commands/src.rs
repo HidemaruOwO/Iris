@@ -7,6 +7,7 @@ use serenity::prelude::*;
 use crate::libs::config;
 
 pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
+    crate::libs::message_util::typing(context, message).await;
     let github_url = "https://github.com/HidemaruOwO/Iris";
 
     let mut branch = String::from("develop");

@@ -40,6 +40,7 @@ fn ram_usage_level(usage: u64, total: u64) -> &'static str {
 }
 
 pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
+    crate::libs::message_util::typing(context, message).await;
     let timestamp = Utc::now();
     let message_timestamp = message.timestamp.to_string();
 
