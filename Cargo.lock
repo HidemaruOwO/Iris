@@ -682,6 +682,7 @@ dependencies = [
  "log",
  "logger_rs",
  "openssl",
+ "rand",
  "reqwest",
  "serde",
  "serde_json",

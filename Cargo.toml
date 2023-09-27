@@ -32,3 +32,4 @@ hostname = "0.3.1"
 sys-info = "0.9.1"
 sysinfo = { git = "https://github.com/GuillaumeGomez/sysinfo", branch = "master" }
 openssl = { version = "0.10.35", features = ["vendored"] }
+rand = "0.8.5"
