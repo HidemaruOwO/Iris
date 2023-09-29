@@ -32,6 +32,8 @@
 
 ## 安裝😊
 
+### 本地安裝🏠
+
 GitHub[發布](https://github.com/HidemaruOwO/Iris/releases)或行動[人工製品](https://github.com/HidemaruOwO/Iris/actions/workflows/build.yml)請從下載可執行檔。
 
 -   壓縮包
@@ -71,6 +73,29 @@ chmod 755 start.sh
 
 ```bash
 ./start.sh
+```
+
+### 使用 Docker 🐋
+
+克隆儲存庫並複製啟動腳本。
+
+```bash
+git clone https://github.com/HidemaruOwO/Iris.git
+cp start.example.sh start.sh
+```
+
+在任意編輯器中開啟啟動腳本，設定TOKEN等環境變數。  
+`BOT_OWNER_ID`和`BOT_TOKEN`和`BOT_PREFIX`編輯完成後，儲存並退出編輯器。
+
+```bash
+# Edit start.sh to set environment value
+vim start.sh
+```
+
+啟動。
+
+```bash
+sudo docker compose up -d
 ```
 
 ## 建構🔨
