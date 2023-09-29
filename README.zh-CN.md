@@ -4,7 +4,8 @@
 
 <!-- s;HidemaruOwO/Iris;User/Repository;g -->
 
-[![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml)![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square)![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square)![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square)![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square)![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square)
+[![Test CLI](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml/badge.svg)](https://github.com/HidemaruOwO/Iris/actions/workflows/test.yml)![最終コミット](https://img.shields.io/github/last-commit/HidemaruOwO/Iris?style=flat-square)![リポジトリのスター](https://img.shields.io/github/stars/HidemaruOwO/Iris?style=flat-square)![問題](https://img.shields.io/github/issues/HidemaruOwO/Iris?style=flat-square)
+![オープンな問題](https://img.shields.io/github/issues-raw/HidemaruOwO/Iris?style=flat-square)![バグの問題](https://img.shields.io/github/issues/HidemaruOwO/Iris/bug?style=flat-square)
 
 ![image](https://user-images.githubusercontent.com/82384920/269208322-7155e5c7-fc40-40fb-9b1f-1f11d5d78ddd.png)
 
@@ -31,6 +32,8 @@
 ## 用法💨
 
 ## 安装😊
+
+### 本地安装🏠
 
 GitHub[发布](https://github.com/HidemaruOwO/Iris/releases)或行动[人工制品](https://github.com/HidemaruOwO/Iris/actions/workflows/build.yml)请从下载可执行文件。
 
@@ -71,6 +74,29 @@ chmod 755 start.sh
 
 ```bash
 ./start.sh
+```
+
+### 使用 Docker 🐋
+
+克隆存储库并复制启动脚本。
+
+```bash
+git clone https://github.com/HidemaruOwO/Iris.git
+cp start.example.sh start.sh
+```
+
+在任意编辑器中打开启动脚本，设置TOKEN等环境变量。  
+`BOT_OWNER_ID`和`BOT_TOKEN`和`BOT_PREFIX`编辑完成后，保存并退出编辑器。
+
+```bash
+# Edit start.sh to set environment value
+vim start.sh
+```
+
+启动。
+
+```bash
+sudo docker compose up -d
 ```
 
 ## 构建🔨
@@ -116,7 +142,7 @@ mv test.example.sh test.sh
 -   Dependabot 设置
     -   `.github/dependabot.yml`的`package-ecosystem`将值设置为（例如 npm、yarn、pip）
 -   CodeQL 设置
-    -   <https://dev.classmethod.jp/articles/github-code-scanning/>
+    -   [HTTPS://Dev.class method.键盘/articles/GitHub-code-scanning/](https://dev.classmethod.jp/articles/github-code-scanning/)
     -   [支持的语言](https://codeql.github.com/docs/codeql-overview/supported-languages-and-frameworks/)
 
 </details>
