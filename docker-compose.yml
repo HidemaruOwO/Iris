@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  iris:
+    container_name: iris
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - LC_CTYPE=ja_JP.utf8
+      - LANG=ja_JP.utf8
+    volumes:
+      - .:/app-source
+    restart: always
