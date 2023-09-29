@@ -37,6 +37,8 @@ Rustで書かれた汎用Discord Bot
 
 ## Install 😊
 
+### Local Intall 🏠
+
 GitHubの[Release](https://github.com/HidemaruOwO/Iris/releases)もしくは、Actionsの[Artifact](https://github.com/HidemaruOwO/Iris/actions/workflows/build.yml)から実行ファイルをダウンロードしてください。
 
 - tar.gz
@@ -76,6 +78,29 @@ chmod 755 start.sh
 
 ```bash
 ./start.sh
+```
+
+### Use Docker 🐋
+
+リポジトリのクローンと起動スクリプトを複製します。
+
+```bash
+git clone https://github.com/HidemaruOwO/Iris.git
+cp start.example.sh start.sh
+```
+
+起動スクリプトをTOKENなどの環境変数を設定するために、任意のエディターで開きます。
+`BOT_OWNER_ID`と`BOT_TOKEN`と`BOT_PREFIX`を編集したら、保存してエディターを終了します。
+
+```bash
+# Edit start.sh to set environment value
+vim start.sh
+```
+
+起動します。
+
+```bash
+sudo docker compose up -d
 ```
 
 ## Build 🔨
