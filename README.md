@@ -89,7 +89,7 @@ git clone https://github.com/HidemaruOwO/Iris.git
 cp start.example.sh start.sh
 ```
 
-起動スクリプトをTOKENなどの環境変数を設定するために、任意のエディターで開きます。
+起動スクリプトをTOKENなどの環境変数を設定するために、任意のエディターで開きます。  
 `BOT_OWNER_ID`と`BOT_TOKEN`と`BOT_PREFIX`を編集したら、保存してエディターを終了します。
 
 ```bash
