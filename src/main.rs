@@ -15,7 +15,7 @@ struct Handler;
 #[async_trait]
 impl EventHandler for Handler {
     async fn ready(&self, _: Context, ready: Ready) {
-        println!("{} is connected!", ready.user.name);
+        info!("🌸 {} is connected!", ready.user.name);
     }
     async fn message(&self, context: Context, message: Message) {
         let cfg = &config::get_config();
@@ -48,6 +48,7 @@ impl EventHandler for Handler {
                 "hello" => commands::hello::main(&context, &message, &args).await,
                 "ping" => commands::ping::main(&context, &message, &args).await,
                 "src" => commands::src::main(&context, &message, &args).await,
+                "help" => commands::help::main(&context, &message, &args).await,
                 _ => info!("Command not found: {}", cmd),
             }
         }
@@ -57,8 +58,10 @@ impl EventHandler for Handler {
 // -----------------------------------
 #[tokio::main]
 async fn main() {
-    let filters: [(Option<&str>, LevelFilter); 2] =
-        [(None, LevelFilter::Warn), (Some("iris"), LevelFilter::Info)];
+    let filters: [(Option<&str>, LevelFilter); 2] = [
+        (None, LevelFilter::Warn),
+        (Some("iris"), LevelFilter::Debug),
+    ];
     init_logger(&filters);
     info!("🚀 Starting...\n");
     let cfg = &config::get_config();
