@@ -749,7 +749,7 @@ checksum = "b5e6163cb8c49088c2c36f57875e58ccd8c87c7427f7fbd50ea6710b2f3f2e8f"
 [[package]]
 name = "logger_rs"
 version = "0.1.0"
-source = "git+https://github.com/HidemaruOwO/logger-rs?branch=main#ffa9063a3e42661922731db3bb05be9a5a24cd88"
+source = "git+https://github.com/HidemaruOwO/logger-rs?branch=main#dabefd886fae1ec8640c2dd86521d685d240e97e"
 dependencies = [
  "env_logger",
  "log",
