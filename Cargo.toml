@@ -26,7 +26,7 @@ logger_rs = { git = "https://github.com/HidemaruOwO/logger-rs", branch = "main" 
 tokio = { version = "1.33.0", features = ["rt-multi-thread"]}
 reqwest = "0.11.22"
 serde = "1.0.190"
-serde_json = "1.0.107"
+serde_json = "1.0.108"
 chrono = "0.4.31"
 hostname = "0.3.1"
 sys-info = "0.9.1"
