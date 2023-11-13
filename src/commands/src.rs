@@ -46,7 +46,6 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
             ),
         )
         .await
-        .unwrap()
-        .react(context, ReactionType::Unicode("✅".to_string())).await.expect("Failed to react");
+        .unwrap();
     info!("✅ Success");
 }
