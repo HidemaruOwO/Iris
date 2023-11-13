@@ -1,12 +1,11 @@
 use crate::libs::version::{cargo_version, rustc_version};
 
 use std::env::consts;
-use std::process::Command;
 use std::time::Instant;
 use std::{collections::HashMap, time::Duration};
 
 use chrono::{NaiveDateTime, Utc};
-use logger_rs::{error, info};
+use logger_rs::info;
 use serenity::model::prelude::*;
 use serenity::prelude::*;
 use sysinfo::{CpuExt, System, SystemExt};
@@ -56,7 +55,6 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
     let benchmark_msg = message.reply(context, "Benchmarking...").await.unwrap();
     let write_ping = send_start.elapsed().as_millis();
     benchmark_msg.delete(context).await.unwrap();
-
 
     // Get CPU
     #[derive(Debug)]
@@ -136,14 +134,15 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
     let used_swap = sys.used_swap();
 
     // Get OS
-    let os = &consts::OS;
+    let os = &sys.name().unwrap_or("unknown os".to_string());
     let arch = &consts::ARCH;
     let host_name = &sys.host_name().unwrap_or("unknown host".to_string());
     let os_version = &sys.os_version().unwrap_or("unknown os".to_string());
+    let kernel_version = &sys.kernel_version().unwrap_or("unknown kernel".to_string());
 
     let system_info = format!(
-        "🖥 **System Info**\n```js\nOS: {} {}\nARCH: {}\nHOST: {}\n```",
-        os, os_version, arch, host_name
+        "🖥 **System Info**\n```js\nOS: {} {} (KERNEL: {})\nARCH: {}\nHOST: {}\n```",
+        os, os_version, kernel_version, arch, host_name
     );
     let os_info = format!(
         "🚀 **API Latency**\n```js\nREAD: {}ms\nWRITE: {}ms\n```",
