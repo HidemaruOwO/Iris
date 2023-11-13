@@ -28,8 +28,6 @@ reqwest = "0.11.22"
 serde = "1.0.192"
 serde_json = "1.0.108"
 chrono = "0.4.31"
-hostname = "0.3.1"
-sys-info = "0.9.1"
 sysinfo = { git = "https://github.com/GuillaumeGomez/sysinfo", branch = "master" }
 openssl = { version = "0.10.59", features = ["vendored"] }
 rand = "0.8.5"
