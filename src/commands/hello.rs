@@ -8,5 +8,5 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         .reply(context, "Hello world!!")
         .await
         .unwrap();
-    info!("✅ Success");
+    info!("Success");
 }

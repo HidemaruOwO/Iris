@@ -8,5 +8,5 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         .reply(context, "まだないよ！！ここでコマンドを確認してね！！\nhttps://github.com/HidemaruOwO/Iris/tree/develop/src/commands")
         .await
         .unwrap();
-    info!("✅ Success");
+    info!("Success");
 }

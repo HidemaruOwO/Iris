@@ -11,5 +11,5 @@ pub async fn main(context: &Context, message: &Message, _args: &Vec<&str>) {
         )
         .await
         .unwrap();
-    info!("✅ Success");
+    info!("Success");
 }
