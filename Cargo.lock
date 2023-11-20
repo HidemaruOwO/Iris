@@ -1401,7 +1401,7 @@ dependencies = [
 [[package]]
 name = "sysinfo"
 version = "0.29.10"
-source = "git+https://github.com/GuillaumeGomez/sysinfo?branch=master#f6c1a25aa22ff323087b5e35c5014d1d81f7fe7d"
+source = "git+https://github.com/GuillaumeGomez/sysinfo?branch=master#84c3b36a730a91229dd5a738c725aac81a08c7c8"
 dependencies = [
  "cfg-if",
  "core-foundation-sys",
