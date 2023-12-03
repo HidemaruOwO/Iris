@@ -57,14 +57,11 @@ impl EventHandler for Handler {
                 }
             }
         } else {
-            debug!("Checking message content");
-
             if message.content.contains("https://twitter.com")
                 || message.content.contains("https://x.com")
                 || message.content.contains("http://twitter.com")
                 || message.content.contains("http://x.com")
             {
-                debug!("Running tweet preview");
                 messages::fxtwitter::main(&context, &message).await;
             }
         }
