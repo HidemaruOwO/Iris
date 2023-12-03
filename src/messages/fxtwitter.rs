@@ -13,9 +13,6 @@ pub async fn main(context: &Context, message: &Message) {
     let mut urls = String::from(text);
 
     for reg in reg.find_iter(content) {
-        if !is_changed {
-            is_changed = true;
-        }
         if urls == text {
             urls.push_str("\n")
         }
@@ -24,12 +21,15 @@ pub async fn main(context: &Context, message: &Message) {
                 let domain = url.domain().unwrap();
                 if domain == "twitter.com" || domain == "x.com" {
                     if let Some(mut pathes) = url.path_segments() {
-                        if pathes.clone().count() == 3 as usize {
+                        if pathes.clone().count() == 3 {
                             urls.push_str(&format!(
                                 "・[Tweet by @{}](https://fxtwitter.com{})\n",
                                 pathes.next().unwrap(),
                                 url.path()
                             ));
+                            if !is_changed {
+                                is_changed = true;
+                            }
                         }
                     }
                 }
