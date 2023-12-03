@@ -1,5 +1,6 @@
 mod commands;
 mod libs;
+mod messages;
 
 use log::LevelFilter;
 use logger_rs::*;
@@ -21,35 +22,47 @@ impl EventHandler for Handler {
         let cfg = &config::get_config();
         let prefix = cfg.get_prefix();
         let token = cfg.get_token();
-        if !message.content.starts_with(prefix) {
+        let bot_id = cfg.get_id();
+
+        if message.author.bot || message.author.id == *bot_id {
             return;
         }
-        if let Some(content) = message.content.strip_prefix(prefix) {
-            let mut parts = content.split_whitespace();
-            let cmd = parts.next().unwrap_or("");
-            let args = parts.collect::<Vec<_>>();
+        if message.content.starts_with(prefix) {
+            if let Some(content) = message.content.strip_prefix(prefix) {
+                let mut parts = content.split_whitespace();
+                let cmd = parts.next().unwrap_or("");
+                let args = parts.collect::<Vec<_>>();
 
-            if cmd.is_empty() {
-                return;
+                if cmd.is_empty() {
+                    return;
+                }
+
+                let guild = api::guild(token.to_string(), message.guild_id.unwrap().to_string())
+                    .await
+                    .unwrap();
+
+                info!("💨 Running command: {}", cmd);
+                info!("args: {:?}", args);
+                info!("server: ");
+                info!(" name: {}", guild.get_name());
+                info!(" id: {}", message.guild_id.unwrap().to_string());
+
+                match cmd {
+                    "puyo" => commands::puyo::main(&context, &message, &args).await,
+                    "hello" => commands::hello::main(&context, &message, &args).await,
+                    "ping" => commands::ping::main(&context, &message, &args).await,
+                    "src" => commands::src::main(&context, &message, &args).await,
+                    "help" => commands::help::main(&context, &message, &args).await,
+                    _ => info!("Command not found: {}", cmd),
+                }
             }
-
-            let guild = api::guild(token.to_string(), message.guild_id.unwrap().to_string())
-                .await
-                .unwrap();
-
-            info!("💨 Running command: {}", cmd);
-            info!("args: {:?}", args);
-            info!("server: ");
-            info!(" name: {}", guild.get_name());
-            info!(" id: {}", message.guild_id.unwrap().to_string());
-
-            match cmd {
-                "puyo" => commands::puyo::main(&context, &message, &args).await,
-                "hello" => commands::hello::main(&context, &message, &args).await,
-                "ping" => commands::ping::main(&context, &message, &args).await,
-                "src" => commands::src::main(&context, &message, &args).await,
-                "help" => commands::help::main(&context, &message, &args).await,
-                _ => info!("Command not found: {}", cmd),
+        } else {
+            if message.content.contains("https://twitter.com")
+                || message.content.contains("https://x.com")
+                || message.content.contains("http://twitter.com")
+                || message.content.contains("http://x.com")
+            {
+                messages::fxtwitter::main(&context, &message).await;
             }
         }
     }
