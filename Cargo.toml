@@ -18,7 +18,7 @@ name = "name"
 path = "scripts/name.rs"
 
 [dependencies]
-env_logger = "0.10.1"
+env_logger = "0.11.0"
 log = "0.4.20"
 serenity = { git = "https://github.com/vars1ty/serenity", branch = "current",default-features = false, features = [ "builder", "cache", "client", "gateway", "http", "model", "utils", "rustls_backend" ] }
 # logger_rs = { path = "/home/hidemaru/Code/logger-rs" }
