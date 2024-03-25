@@ -31,5 +31,5 @@ chrono = "0.4.31"
 sysinfo = { git = "https://github.com/GuillaumeGomez/sysinfo", branch = "master" }
 openssl = { version = "0.10.59", features = ["vendored"] }
 rand = "0.8.5"
-regex = "1.10.2"
+regex = "1.10.4"
 url = "2.5.0"
